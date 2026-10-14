@@ -1,0 +1,373 @@
+:root {
+  color-scheme: dark;
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+
+  --ink: #f4f2ff;
+  --ink-dim: #c9c4e6;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.16);
+
+  --accent: #8b5cf6;
+  --good: #22c55e;
+  --bad: #ef4444;
+
+  --fs-title: clamp(1.3rem, 5vw, 1.9rem);
+  --fs-sub: clamp(0.85rem, 3vw, 1rem);
+  --fs-body: clamp(0.85rem, 2.8vw, 1rem);
+  --fs-expr: clamp(1.05rem, 4.6vw, 1.55rem);
+  --fs-basket: clamp(0.82rem, 3vw, 1.05rem);
+  --fs-basket-sub: clamp(0.65rem, 2.4vw, 0.78rem);
+  --fs-hud: clamp(0.75rem, 2.6vw, 0.95rem);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: #0f1022;
+  overflow-x: hidden;
+}
+
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(at 12% 18%, rgba(139, 92, 246, 0.55) 0, transparent 46%),
+    radial-gradient(at 88% 12%, rgba(6, 182, 212, 0.45) 0, transparent 48%),
+    radial-gradient(at 82% 82%, rgba(236, 72, 153, 0.45) 0, transparent 50%),
+    radial-gradient(at 15% 85%, rgba(59, 130, 246, 0.45) 0, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(99, 102, 241, 0.25) 0, transparent 60%),
+    #0f1022;
+}
+
+#app {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  flex-wrap: wrap;
+}
+
+.hud-title {
+  font-weight: 700;
+  font-size: var(--fs-sub);
+  letter-spacing: -0.01em;
+}
+
+.hud-stats {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.hud-chip {
+  font-size: var(--fs-hud);
+  font-weight: 600;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  white-space: nowrap;
+}
+
+.hud-combo {
+  color: #fde68a;
+  border-color: rgba(253, 230, 138, 0.4);
+}
+
+/* ---------- Stage / Screens ---------- */
+#stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 1rem;
+  min-height: 0;
+}
+
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.screen[hidden] { display: none; }
+
+.card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 1.4rem 1.3rem;
+  margin: auto 0;
+}
+
+.card-wide { width: 100%; }
+
+.title {
+  font-size: var(--fs-title);
+  font-weight: 800;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: var(--fs-sub);
+  color: var(--ink-dim);
+  margin: 0 0 0.9rem;
+}
+
+.code-chip {
+  display: inline-block;
+  font-size: 0.75em;
+  background: rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 6px;
+  padding: 0.05rem 0.4rem;
+}
+
+.desc {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin: 0 0 1.1rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: var(--fs-body);
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  color: #fff;
+  margin-top: 0.8rem;
+}
+
+.btn-primary:hover { filter: brightness(1.08); }
+
+.btn-ghost {
+  background: var(--glass-strong);
+  color: var(--ink);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 0.6rem;
+}
+
+.best-score {
+  text-align: center;
+  font-size: var(--fs-hud);
+  color: var(--ink-dim);
+  margin: 0.7rem 0 0;
+}
+
+/* ---------- Formula reference ---------- */
+.formula-ref {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.formula-ref-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: var(--fs-body);
+  flex-wrap: wrap;
+}
+
+.formula-ref-item .fr-name {
+  color: var(--ink-dim);
+  font-size: var(--fs-basket-sub);
+  flex: 1 1 auto;
+}
+
+.review-title {
+  font-size: var(--fs-sub);
+  margin: 1rem 0 0.6rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- Game screen ---------- */
+.fall-zone {
+  position: relative;
+  flex: 1;
+  min-height: 42vh;
+  margin: 0.6rem 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+}
+
+.falling-item {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  max-width: 88%;
+  text-align: center;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 0.55rem 0.9rem;
+  font-size: var(--fs-expr);
+}
+
+.falling-item .katex { font-size: 1em; }
+
+.falling-item.fx-correct {
+  background: rgba(34, 197, 94, 0.8);
+  border-color: rgba(187, 247, 208, 0.9);
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.6);
+}
+
+.falling-item.fx-wrong {
+  background: rgba(239, 68, 68, 0.8);
+  border-color: rgba(254, 202, 202, 0.9);
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.6);
+}
+
+.score-pop {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 800;
+  font-size: var(--fs-sub);
+  pointer-events: none;
+  animation: popUp 0.7s ease-out forwards;
+}
+
+.score-pop.pop-good { color: var(--good); }
+.score-pop.pop-bad { color: var(--bad); }
+
+@keyframes popUp {
+  0% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -28px); }
+}
+
+.baskets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  padding-bottom: 0.4rem;
+}
+
+.basket-btn {
+  flex: 1 1 140px;
+  max-width: 220px;
+  font-family: inherit;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 0.6rem 0.5rem;
+  min-height: 64px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.basket-btn:active { transform: scale(0.95); }
+
+.basket-btn .b-formula { font-size: var(--fs-basket); }
+.basket-btn .b-formula .katex { font-size: 1em; }
+
+.basket-btn .b-name {
+  font-size: var(--fs-basket-sub);
+  color: var(--ink-dim);
+}
+
+.basket-btn.basket-correct {
+  background: rgba(34, 197, 94, 0.75);
+  border-color: rgba(187, 247, 208, 0.9);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.5), 0 0 18px rgba(34, 197, 94, 0.6);
+}
+
+.basket-btn.basket-wrong {
+  background: rgba(239, 68, 68, 0.75);
+  border-color: rgba(254, 202, 202, 0.9);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5), 0 0 18px rgba(239, 68, 68, 0.6);
+}
+
+/* ---------- Result screen ---------- */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 0.6rem 0 0.4rem;
+}
+
+.result-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.7rem 0.4rem;
+  text-align: center;
+}
+
+.result-label {
+  display: block;
+  font-size: var(--fs-basket-sub);
+  color: var(--ink-dim);
+}
+
+.result-value {
+  display: block;
+  font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+  font-weight: 800;
+  margin-top: 0.15rem;
+}
+
+.new-best {
+  text-align: center;
+  color: #fde68a;
+  font-weight: 700;
+  font-size: var(--fs-body);
+  margin: 0.3rem 0 0.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .basket-btn, .score-pop { transition: none; animation: none; }
+}

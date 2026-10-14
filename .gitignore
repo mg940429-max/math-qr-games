@@ -1,0 +1,7 @@
+# 교육과정 참고 문서 (배포 대상 아님, 로컬 참고용)
+01_2022개정교육과정/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

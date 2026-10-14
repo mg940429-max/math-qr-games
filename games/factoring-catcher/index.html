@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>인수분해 캐처 | 공통수학1</title>
+<meta name="description" content="공통수학1 다항식의 인수분해 공식을 익히는 타임어택 게임">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mesh-bg" aria-hidden="true"></div>
+
+<div id="app">
+
+  <header class="hud">
+    <div class="hud-title">인수분해 캐처</div>
+    <div class="hud-stats">
+      <span id="hudLives" class="hud-chip">❤❤❤</span>
+      <span id="hudScore" class="hud-chip">0점</span>
+      <span id="hudCombo" class="hud-chip hud-combo" hidden>콤보 0</span>
+    </div>
+  </header>
+
+  <main id="stage">
+
+    <!-- 시작 화면 -->
+    <section id="screenStart" class="screen">
+      <div class="card card-wide">
+        <h1 class="title">인수분해 캐처</h1>
+        <p class="subtitle">공통수학1 · 다항식의 인수분해 <span class="code-chip">[10공수1-01-03]</span></p>
+        <p class="desc">위에서 떨어지는 전개식을 보고, 알맞은 인수분해 공식 바구니를 제한시간 안에 탭하세요!<br>하트는 3개, 정답을 맞힐수록 속도가 빨라집니다.</p>
+
+        <button id="btnShowFormulas" class="btn btn-ghost" type="button" aria-expanded="false" aria-controls="formulaRef">공식 미리보기</button>
+
+        <div id="formulaRef" class="formula-ref" hidden></div>
+
+        <button id="btnStart" class="btn btn-primary" type="button">게임 시작</button>
+        <p id="bestScoreLine" class="best-score" hidden></p>
+      </div>
+    </section>
+
+    <!-- 게임 화면 -->
+    <section id="screenGame" class="screen" hidden>
+      <div id="fallZone" class="fall-zone"></div>
+      <div id="baskets" class="baskets"></div>
+    </section>
+
+    <!-- 결과 화면 -->
+    <section id="screenOver" class="screen" hidden>
+      <div class="card card-wide">
+        <h2 class="title">게임 종료!</h2>
+        <div class="result-grid">
+          <div class="result-item">
+            <span class="result-label">점수</span>
+            <span id="resultScore" class="result-value">0</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">정답 수</span>
+            <span id="resultCorrect" class="result-value">0</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">최고 콤보</span>
+            <span id="resultCombo" class="result-value">0</span>
+          </div>
+        </div>
+        <p id="newBestLine" class="new-best" hidden>🎉 최고 점수 경신!</p>
+
+        <h3 class="review-title">공식 복습</h3>
+        <div id="reviewFormulas" class="formula-ref"></div>
+
+        <button id="btnRetry" class="btn btn-primary" type="button">다시하기</button>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="script.js"></script>
+</body>
+</html>
