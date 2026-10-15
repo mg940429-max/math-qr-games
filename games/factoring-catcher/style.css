@@ -199,6 +199,8 @@ body {
   margin-bottom: 0.4rem;
 }
 
+.formula-ref[hidden] { display: none; }
+
 .formula-ref-item {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);

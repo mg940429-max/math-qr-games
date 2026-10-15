@@ -83,9 +83,9 @@
   ];
 
   const MAX_LIVES = 3;
-  const START_DURATION = 4800;
-  const MIN_DURATION = 2200;
-  const DURATION_STEP = 150;
+  const START_DURATION = 6850;
+  const MIN_DURATION = 3150;
+  const DURATION_STEP = 200;
   const ROUND_GAP = 480;
   const BEST_KEY = 'factoringCatcher.bestScore';
 
